@@ -28,13 +28,9 @@ io.on('connection', (socket) => {
         console.log('Client disconnected');
     });
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         io.emit('newMessage', generateMessage(message.from, message.text));
-        // socket.broadcast.emit('newMessage', {
-        //     from: message.from,
-        //     text: message.text,
-        //     createdAt: new Date().getTime()
-        // });
+        callback('This is from the server.');
     });
 });
 
